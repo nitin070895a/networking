@@ -26,4 +26,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     compile 'com.github.nitin070895a:common:4084c786bc'
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.android.volley:volley:1.0.0'
 }

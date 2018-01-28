@@ -21,7 +21,7 @@ public class ApiCallTask extends AsyncTask<Void, Void, Void> {
 
     private final String KEY_RESPONSE_OBJECT = "response";
     private final String KEY_RESULT_ARRAY = "result";
-    private final String KEY_RESPONSE_OBJECT_MESSAGE = "msg";
+    private final String KEY_RESPONSE_OBJECT_MESSAGE = "message";
     private final String KEY_RESPONSE_OBJECT_STATUS = "status";
 
     private String url;

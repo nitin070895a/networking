@@ -20,8 +20,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile "com.android.support:appcompat-v7:$rootProject.ext.support_version"
     compile "com.android.support:design:$rootProject.ext.support_version"
@@ -30,4 +29,8 @@ dependencies {
     compile "com.android.support:support-v4:$rootProject.ext.support_version"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.support_version"
 
+    compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.github.nitin070895a:generics:0.1'
+    
+    compile project(':networking')
 }
