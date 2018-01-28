@@ -9,22 +9,33 @@ import nitin.thecrazyprogrammer.generics.Adapters.CardViewRecyclerAdapter;
 import nitin.thecrazyprogrammer.generics.Fragments.BasicRecyclerViewFragment;
 import nitin.thecrazyprogrammer.networking.Listeners.ApiCallListener;
 import nitin.thecrazyprogrammer.networking.Tasks.ApiCallTask;
+import nitin.thecrazyprogrammer.networking.Tasks.RetroFitTask;
+import nitin.thecrazyprogrammer.networking.Tasks.VolleyTask;
+import nitin.thecrazyprogrammer.networkingexample.Activity.ExampleDataActivity;
 import nitin.thecrazyprogrammer.networkingexample.Activity.MainActivity;
 import nitin.thecrazyprogrammer.networkingexample.Models.Device;
 
 /**
  * Created by Nitin Khurana on 1/28/2018.
  */
-public class ApiCallTaskFragment extends BasicRecyclerViewFragment<CardViewRecyclerAdapter> implements ApiCallListener {
+public class DataFetchFragment extends BasicRecyclerViewFragment<CardViewRecyclerAdapter> implements ApiCallListener {
 
     String[] titles = new String[10];
     String[] desc = new String [10];
 
+    ExampleDataActivity dataActivity;
+
     @Override
     protected void loadOrReload() {
+        dataActivity = (ExampleDataActivity) getContext();
+        String url = MainActivity.TEST_URL + "brand=";
 
         // make Api Call here
-        new ApiCallTask(getContext(), MainActivity.TEST_URL + "brand=" + "Samsung", this).execute();
+        switch (dataActivity.taskType){
+            case 1: new VolleyTask(getContext(), url + "Apple", this).execute(); return;
+            case 2: new RetroFitTask(getContext(), url + "Motorola", this).execute(); return;
+        }
+        new ApiCallTask(getContext(), url + "Samsung", this).execute();
     }
 
     @Override

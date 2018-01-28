@@ -1,14 +1,8 @@
 package nitin.thecrazyprogrammer.networkingexample.Activity;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-
 import nitin.thecrazyprogrammer.generics.Activities.BasicFragmentActivity;
 import nitin.thecrazyprogrammer.generics.Fragments.BasicFragment;
-import nitin.thecrazyprogrammer.networkingexample.Fragment.ApiCallTaskFragment;
-import nitin.thecrazyprogrammer.networkingexample.Fragment.RetrofitFragment;
-import nitin.thecrazyprogrammer.networkingexample.Fragment.VolleyFragment;
+import nitin.thecrazyprogrammer.networkingexample.Fragment.DataFetchFragment;
 import nitin.thecrazyprogrammer.networkingexample.R;
 
 /**
@@ -17,16 +11,11 @@ import nitin.thecrazyprogrammer.networkingexample.R;
 public class ExampleDataActivity extends BasicFragmentActivity{
 
     public static final String INTENT_DATA_TASK_TYPE = "type";
-    private int taskType;
+    public int taskType;
 
     @Override
     protected BasicFragment setFragment() {
-        switch (taskType){
-            case 0: return new ApiCallTaskFragment();
-            case 1: return new VolleyFragment();
-            case 2: return new RetrofitFragment();
-            default: return new ApiCallTaskFragment();
-        }
+        return new DataFetchFragment();
     }
 
     @Override
