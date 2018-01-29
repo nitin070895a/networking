@@ -47,7 +47,7 @@ public class VolleyTask implements Response.ErrorListener, Response.Listener<JSO
     public final void onErrorResponse(VolleyError error) {
 
         success = false;
-        msg = error.getMessage();
+        msg = context.getString(R.string.could_not_connect);
         apiCallListener.onApiResult(success, msg, URL);
     }
 
