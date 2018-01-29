@@ -30,6 +30,8 @@ dependencies {
     compile "com.android.support:recyclerview-v7:$rootProject.ext.support_version"
 
     compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.github.nitin070895a:generics:0.1'
     
     compile project(':networking')

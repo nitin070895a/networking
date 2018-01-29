@@ -9,11 +9,15 @@ import nitin.thecrazyprogrammer.generics.Adapters.CardViewRecyclerAdapter;
 import nitin.thecrazyprogrammer.generics.Fragments.BasicRecyclerViewFragment;
 import nitin.thecrazyprogrammer.networking.Listeners.ApiCallListener;
 import nitin.thecrazyprogrammer.networking.Tasks.ApiCallTask;
-import nitin.thecrazyprogrammer.networking.Tasks.RetroFitTask;
 import nitin.thecrazyprogrammer.networking.Tasks.VolleyTask;
 import nitin.thecrazyprogrammer.networkingexample.Activity.ExampleDataActivity;
 import nitin.thecrazyprogrammer.networkingexample.Activity.MainActivity;
 import nitin.thecrazyprogrammer.networkingexample.Models.Device;
+import nitin.thecrazyprogrammer.networkingexample.Retrofit.ApiInterface;
+import nitin.thecrazyprogrammer.networkingexample.Retrofit.RetrofitApiClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by Nitin Khurana on 1/28/2018.
@@ -33,7 +37,24 @@ public class DataFetchFragment extends BasicRecyclerViewFragment<CardViewRecycle
         // make Api Call here
         switch (dataActivity.taskType){
             case 1: new VolleyTask(getContext(), url + "Apple", this).execute(); return;
-            case 2: new RetroFitTask(getContext(), url + "Motorola", this).execute(); return;
+            case 2:
+                //new RetroFitTask(getContext(), url + "Motorola", this).execute();
+                ApiInterface apiInterface = RetrofitApiClient.getRetrofitClient(MainActivity.TEST_DOMAIN).create(ApiInterface.class);
+                Call<Device> call = apiInterface.getDevices("Motorola");
+                call.enqueue(new Callback<Device>() {
+                    @Override
+                    public void onResponse(Call<Device> call, Response<Device> response) {
+
+                        showLog("Here");
+                    }
+
+                    @Override
+                    public void onFailure(Call<Device> call, Throwable t) {
+
+                    }
+                });
+
+                return;
         }
         new ApiCallTask(getContext(), url + "Samsung", this).execute();
     }
